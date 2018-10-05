@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { userActions } from '../_actions'
 
 class LoginPage extends React.Component {
 
@@ -10,7 +12,7 @@ class LoginPage extends React.Component {
       password: '',
       submited: false,
     };
-
+    console.log(this.props.user);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -21,8 +23,11 @@ class LoginPage extends React.Component {
 }
 
   handleSubmit(event){
-    event.prevetDefault();
-    console.log('submit');
+    event.preventDefault();
+    const dispatch = this.props.dispatch;
+    const {username, password} = this.state
+    dispatch(userActions.login(username, password));
+
   }
 
   render(){
@@ -47,8 +52,7 @@ class LoginPage extends React.Component {
               </div>
               <div className="form-group">
                   <button className="btn btn-primary">Login</button>
-
-                  <Link to="/register" className="btn btn-link">Register</Link>
+                  <Link to="/" className="btn btn-link"> HOME</Link>
               </div>
           </form>
       </div>
@@ -56,4 +60,11 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage;
+
+function mapStateToProps(state) {
+  const { user } = state.authentication;
+  return { user };
+}
+
+const connectedLP = connect(mapStateToProps)(LoginPage);
+export {connectedLP as LoginPage};
