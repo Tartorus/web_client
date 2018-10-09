@@ -2,6 +2,7 @@
   "name": "web_client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://0.0.0.0:8080",
   "dependencies": {
     "history": "^4.7.2",
     "react": "^16.5.2",

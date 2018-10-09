@@ -10,13 +10,22 @@ function login(username, password) {
   return dispatch => {
       request.post('/c_api/v2/4/login/', {username, password})
           .then(
-            user => {
-              dispatch(success(user));
-              history.push('/');
-            },
-            error => {console.log(error)}
-        );
+            response => {
+              if (response.status === 200){
+                response.json().then(data => {
+                      let {key} = data;
+                      dispatch(success({username, key}))
+                      history.push('/');
+                    });
+              }
+              else {
+                response.json().then(data => {
+                  dispatch(failure());
+                })
+              };
+            });
   };
 
   function success(user) {return {type: userConstants.LOGIN, user} }
+  function failure() {return {type: userConstants.LOGIN_FAIL} }
 }

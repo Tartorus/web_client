@@ -1,6 +1,3 @@
-const URL = 'http://0.0.0.0:8080'
-
-
 const request ={
   post
 }
@@ -16,11 +13,8 @@ function post(uri, data=null) {
       'Accept': 'application/json'},
     body: data,
     method: 'POST',
-    mode: 'no-cors'
   };
-
-  let url = URL + uri;
-  return fetch(url, params)
+  return fetch(uri, params)
 }
 
 export {request};

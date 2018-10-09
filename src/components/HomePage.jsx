@@ -16,8 +16,7 @@ class HomePage extends React.Component {
     return(
       <div>
         {this.render_redirect(user)}
-        <h1>HomePage {user ? user.username : 'Anonim'}</h1>
-        <Link to="/login" className="btn btn-link"> LOGIN</Link>
+        <h1>HomePage { user ? user.username : 'Anonim' }</h1>
       </div>
     );
   }

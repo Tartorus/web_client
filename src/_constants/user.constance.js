@@ -1,3 +1,4 @@
 export const userConstants = {
-  LOGIN: 'LOGIN'
+  LOGIN: 'LOGIN',
+  LOGIN_FAIL: 'FAIL'
 }
