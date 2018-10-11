@@ -12,7 +12,6 @@ class LoginPage extends React.Component {
       password: '',
       submitted: false,
     };
-    console.log(this.props.user);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -49,7 +48,7 @@ class LoginPage extends React.Component {
                       <div className="help-block">Password is required</div>
                   }
               </div>
-              {this.props.loginFail &&
+              {this.props.authentication.loginFail &&
                   <div className="help-block"> Username or password is invalid </div>
               }
               <div className="form-group">
@@ -64,8 +63,7 @@ class LoginPage extends React.Component {
 
 
 function mapStateToProps(state) {
-  const { user, loginFail } = state.authentication;
-  return { user, loginFail };
+  return state;
 }
 
 const connectedLP = connect(mapStateToProps)(LoginPage);

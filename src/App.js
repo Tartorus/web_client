@@ -10,6 +10,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+      <h1>APP </h1>
         <Router history={history}>
           <div>
             <Route exact path='/' component={HomePage} />

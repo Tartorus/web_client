@@ -1,5 +1,6 @@
-const request ={
-  post
+const request = {
+  post,
+  get
 }
 
 function post(uri, data=null) {
@@ -17,4 +18,14 @@ function post(uri, data=null) {
   return fetch(uri, params)
 }
 
-export {request};
+function get(uri) {
+    let params = {
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Accept': 'application/json'},
+      method: 'GET',
+    };
+    return fetch(uri)
+};
+
+export { request };

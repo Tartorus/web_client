@@ -1,22 +1,50 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {history} from '../_helpers';
+import { history } from '../_helpers';
+import { userActions } from '../_actions'
+
+const IDEAS = 'ideas';
+const ASSETS = 'assets'
 
 class HomePage extends React.Component {
-
-  render_redirect(user){
-    if (!user){
-      history.push('/login');
+    constructor(props){
+        super(props);
+        this.state = {
+            curLink: IDEAS
+        }
     }
-  }
+
+    componentWillMount(){
+        if (!this.props.authentication.userkey){
+            history.push('/login');
+        };
+        if (this.props.accounts.loaded === false){
+          this.props.dispatch(userActions.loadAccounts())
+        }
+    }
+
+    handleClick(curLink){
+        return e => { this.setState({curLink}) }
+    }
 
   render(){
-    const {user} = this.props;
     return(
       <div>
-        {this.render_redirect(user)}
-        <h1>HomePage { user ? user.username : 'Anonim' }</h1>
+        <h1>HomePage</h1>
+
+        <ul className="nav justify-content-center">
+            <li className="nav-item">
+                <a className={"nav-link " + (this.state.curLink === IDEAS ? 'active' : '')} href="#" onClick={this.handleClick(IDEAS)}>Идеи</a>
+            </li>
+            <li className="nav-item">
+                <a className={"nav-link " + (this.state.curLink === ASSETS ? 'active' : '')} href="#" onClick={this.handleClick(ASSETS)}>Активы</a>
+            </li>
+        </ul>
+
+        { this.state.curLink === IDEAS && <div>IDEAS</div> }
+        { this.state.curLink === ASSETS && <div>ASSETS</div> }
+
       </div>
     );
   }
@@ -25,9 +53,7 @@ class HomePage extends React.Component {
 
 
 function mapStateToProps(state) {
-  console.log(state);
-    const { user } = state.authentication;
-    return { user };
+    return state;
 }
 
 const connectedHomePage = connect(mapStateToProps)(HomePage);
