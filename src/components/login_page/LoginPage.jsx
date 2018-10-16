@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { userActions } from '../_actions'
+import { login } from './actions'
 
 class LoginPage extends React.Component {
 
@@ -25,7 +25,7 @@ class LoginPage extends React.Component {
     event.preventDefault();
     const dispatch = this.props.dispatch;
     const {username, password} = this.state
-    dispatch(userActions.login(username, password));
+    dispatch(login(username, password));
   }
 
   render(){
