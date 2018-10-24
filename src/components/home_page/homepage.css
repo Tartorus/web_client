@@ -1,0 +1,23 @@
+.hp-header{
+    background-color: #2f91e4;
+    height: 150px;
+    color: white;
+
+}
+
+.hp-header__title{
+    font-size: 18pt;
+    margin: 20px 0px 20px 20px;
+}
+
+.hp-header__switcher{
+    text-align: center;
+    font-size: 16pt;
+    cursor: pointer;
+    color: #1869af;
+}
+
+.hp-header__switcher_selected{
+    color: white;
+    font-weight: bold;
+}

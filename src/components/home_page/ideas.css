@@ -1,0 +1,17 @@
+
+.idea{
+    border: 1px solid black;
+    height: 170px;
+    background-color: white;
+}
+
+.idea__image{
+    height: 50px;
+    width: 50px;
+    float:left;
+    margin: 10px 10px 0px 10px;
+}
+
+.idea__desc{
+    font-size: 14pt;
+}

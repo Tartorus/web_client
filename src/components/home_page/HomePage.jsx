@@ -5,6 +5,7 @@ import { request, history } from '../../_helpers';
 import { loadAccounts } from './actions';
 import { urlsConstants } from '../../_constants';
 import { Ideas } from './Ideas';
+import './homepage.css'
 
 const IDEAS = 'ideas';
 const ASSETS = 'assets';
@@ -42,7 +43,6 @@ class HomePage extends React.Component {
 
     handleClick(curLink){
         return e => {
-            console.log(headerTitle, curLink);
             let title = headerTitle[curLink];
             console.log(title);
             this.setState({curLink: curLink, title: title})
@@ -52,7 +52,7 @@ class HomePage extends React.Component {
     switcherCss(link){
         return classNames({
             'hp-header__switcher': true,
-            'switcher_selected': this.state.curLink === link
+            'hp-header__switcher_selected': this.state.curLink === link
         })
     }
 
@@ -64,19 +64,19 @@ class HomePage extends React.Component {
                     <div className='container'>
                         <div className='row hp-header__title'>{this.state.title}</div>
                         <div className='row'>
-                            <div className='col-md-4' onClick={this.handleClick(ASSETS)}>
+                            <div className='col-xs-4' onClick={this.handleClick(ASSETS)}>
                                 <div className={this.switcherCss(ASSETS)}>
                                     <span className="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
                                     <p>Активы</p>
                                 </div>
                              </div>
-                            <div className='col-md-4' onClick={this.handleClick(IDEAS)}>
+                            <div className='col-xs-4' onClick={this.handleClick(IDEAS)}>
                                 <div className={this.switcherCss(IDEAS)}>
                                     <span className="glyphicon glyphicon-list" aria-hidden="true"></span>
                                     <p>Идеи</p>
                                 </div>
                             </div>
-                            <div className='col-md-4' onClick={this.handleClick(PROFILE)}>
+                            <div className='col-xs-4' onClick={this.handleClick(PROFILE)}>
                                 <div className={this.switcherCss(PROFILE)}>
                                     <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
                                     <p>Профиль</p>
@@ -85,7 +85,7 @@ class HomePage extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className='row content'>
+                <div className='row'>
                 { this.state.curLink === IDEAS && <Ideas/> }
                 </div>
             </div>

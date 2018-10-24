@@ -2,7 +2,14 @@
   "name": "web_client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://0.0.0.0:8080",
+  "proxy": {
+  	"/fs": {
+	    "target": "http://0.0.0.0/"
+	},
+	"/c_api":{
+	    "target": "http://0.0.0.0:8080"
+	}
+  },
   "dependencies": {
     "classnames": "^2.2.6",
     "history": "^4.7.2",

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from './actions'
 
@@ -53,7 +52,6 @@ class LoginPage extends React.Component {
               }
               <div className="form-group">
                   <button className="btn btn-primary">Login</button>
-                  <Link to="/" className="btn btn-link"> HOME</Link>
               </div>
           </form>
       </div>
