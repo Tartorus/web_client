@@ -31,7 +31,7 @@ class Ideas extends React.Component {
     renderIdea(idea){
         let duration = Number((idea.matdays / 365).toFixed(2));
         return (
-            <div className='col-md-4 col-sm-6 col-xs-12 idea'>
+            <div className='col-md-4 col-sm-6 col-xs-12 idea' key={idea.id}>
                 <img className='idea__image' src={idea.image_url}/><h3>{idea.name}</h3><br/>
                 <div className='idea__desc'>
                     <b>{idea.idea_yield}% на {duration} года</b><br/>

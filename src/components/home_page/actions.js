@@ -4,13 +4,14 @@ import { request } from '../../_helpers'
 
 export function loadAccounts() {
     return dispatch => {
-        request.get(urlsConstants.get_accounts)
-            .then(response => {
-                if (response.status === 200){
-                    response.json()
-                        .then(data => { dispatch(success(data.accounts)) })
-                }
+        let response = request.get(urlsConstants.get_accounts);
+        response.then(response => {
+            if (response.status === 200){
+                response.json().then(data => {
+                     dispatch(success(data)) })
+            }
+                // TODO: handle exceptions
             });
     }
-    function success(accounts) { return {type: userConstants.ACCOUNTS_LOADED, accounts} }
+    function success(data) { return {type: userConstants.ACCOUNTS_LOADED, data} };
 }

@@ -14,10 +14,14 @@ export function authentication(state = {loginFail: false}, action) {
   }
 }
 
-export function accounts(state={loaded: false}, action) {
+export function accountsInfo(state={loaded: false}, action) {
     switch (action.type) {
         case userConstants.ACCOUNTS_LOADED:
-            return { loaded: true, accounts: action.accounts };
+            return {
+                loaded: true,
+                accounts: action.data.accounts,
+                summary: action.data.summary
+            };
         default:
             return state;
     }

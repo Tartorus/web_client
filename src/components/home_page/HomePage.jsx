@@ -2,18 +2,18 @@ import React from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { request, history } from '../../_helpers';
-import { loadAccounts } from './actions';
 import { urlsConstants } from '../../_constants';
 import { Ideas } from './Ideas';
+import { Accounts } from './accounts'
 import './homepage.css'
 
 const IDEAS = 'ideas';
-const ASSETS = 'assets';
+const ACCOUNTS = 'accounts';
 const PROFILE = 'profile';
 
 const headerTitle = {};
 headerTitle[IDEAS] = 'Торговые Идеи'
-headerTitle[ASSETS] = 'Мои активы'
+headerTitle[ACCOUNTS] = 'Мои активы'
 headerTitle[PROFILE] = 'Мой профиль'
 
 
@@ -27,15 +27,9 @@ class HomePage extends React.Component {
     }
 
     componentWillMount(){
-        // TODO:  спрятать логику
         request.get(urlsConstants.get_info)
             .then(response => {
-                if (response.status === 200){
-                    if (this.props.accounts.loaded === false){
-                      this.props.dispatch(loadAccounts())
-                    }
-                }
-                else if (response.status === 403){
+                if (response.status === 403){
                     history.push('/login')
                 }
             });
@@ -44,7 +38,6 @@ class HomePage extends React.Component {
     handleClick(curLink){
         return e => {
             let title = headerTitle[curLink];
-            console.log(title);
             this.setState({curLink: curLink, title: title})
         }
     }
@@ -64,8 +57,8 @@ class HomePage extends React.Component {
                     <div className='container'>
                         <div className='row hp-header__title'>{this.state.title}</div>
                         <div className='row'>
-                            <div className='col-xs-4' onClick={this.handleClick(ASSETS)}>
-                                <div className={this.switcherCss(ASSETS)}>
+                            <div className='col-xs-4' onClick={this.handleClick(ACCOUNTS)}>
+                                <div className={this.switcherCss(ACCOUNTS)}>
                                     <span className="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
                                     <p>Активы</p>
                                 </div>
@@ -87,6 +80,7 @@ class HomePage extends React.Component {
                 </div>
                 <div className='row'>
                 { this.state.curLink === IDEAS && <Ideas/> }
+                { this.state.curLink === ACCOUNTS && <Accounts/> }
                 </div>
             </div>
         </div>
